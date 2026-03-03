@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jeonghoon Shim</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #111;
+      color: #d4d4d4;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 60px 24px;
+    }
+
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    header { margin-bottom: 48px; }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 600;
+      color: #f0f0f0;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .links a {
+      color: #7aa2f7;
+      text-decoration: none;
+    }
+    .links a:hover { text-decoration: underline; }
+
+    hr {
+      border: none;
+      border-top: 1px solid #222;
+      margin: 36px 0;
+    }
+
+    section { margin-bottom: 8px; }
+
+    h2 {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .about-text {
+      color: #888;
+      font-size: 14px;
+    }
+
+    /* PUBLICATIONS */
+    .pub { margin-bottom: 28px; }
+
+    .pub-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .pub-venue {
+      font-size: 12px;
+      color: #7aa2f7;
+    }
+
+    .pub-num {
+      font-size: 12px;
+      color: #444;
+    }
+
+    .pub-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: #e8e8e8;
+      margin-bottom: 4px;
+    }
+
+    .pub-authors {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .pub-authors strong { color: #aaa; }
+
+    ul.pub-points {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    ul.pub-points li {
+      font-size: 13px;
+      color: #777;
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.65;
+    }
+
+    ul.pub-points li::before {
+      content: '·';
+      position: absolute;
+      left: 4px;
+      color: #444;
+    }
+
+    /* EDUCATION / ITEMS */
+    .item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .item-period {
+      font-size: 13px;
+      color: #555;
+      padding-top: 1px;
+    }
+
+    .item-title {
+      font-weight: 500;
+      color: #e0e0e0;
+      margin-bottom: 2px;
+    }
+
+    .item-sub {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 6px;
+    }
+
+    /* TEACHING */
+    .ta-item {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 8px;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .ta-item::before {
+      content: '·';
+      position: absolute;
+      left: 4px;
+      color: #444;
+    }
+
+    .ta-item span {
+      color: #aaa;
+    }
+
+    @media (max-width: 480px) {
+      .item { grid-template-columns: 1fr; gap: 2px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Jeonghoon Shim</h1>
+    <p>Graduate School of Data Science · Seoul National University</p>
+    <div class="links">
+      <a href="mailto:jhshim98@snu.ac.kr">jhshim98@snu.ac.kr</a>
+      <a href="https://github.com/GSDS-HNLP-SHIM" target="_blank">GitHub</a>
+      <a href="https://scholar.google.com/citations?user=vxqEpdwAAAAJ&hl=ko" target="_blank">Google Scholar</a>
+      <a href="CV_JeonghoonShim.pdf" target="_blank">CV (PDF)</a>
+    </div>
+  </header>
+
+  <hr>
+
+  <section>
+    <h2>About</h2>
+    <p class="about-text">
+      I am interested in defining and solving problems in the training and evaluation of AI Agents toward real-world deployment. Previously, I've conducted research on dialogue interaction between AI Agents and human users, and I still have great enthusiasm for it. Beyond this, I am interested in RL training of AI Agents and visually-grounded Agents (e.g., GUI, Mobile agents).
+    </p>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>Publications</h2>
+
+    <div class="pub">
+      <div class="pub-meta">
+        <span class="pub-num">[1]</span>
+        <span class="pub-venue">ICLR 2026</span>
+      </div>
+      <div class="pub-title">Non-Collaborative User Simulators for Tool Agents</div>
+      <div class="pub-authors"><strong>Jeonghoon Shim</strong>, Woojung Song, Cheyon Jin, Seungwon Koo, and Yohan Jo</div>
+      <ul class="pub-points">
+        <li>Identification of non-collaborative user behaviors observed in real-world customer service</li>
+        <li>Proposal of simulation methods that replicate non-collaborative users</li>
+        <li>Experimental results demonstrate that state-of-the-art and fine-tuned agents can be impaired when faced with non-collaborative users</li>
+      </ul>
+    </div>
+
+    <div class="pub">
+      <div class="pub-meta">
+        <span class="pub-num">[2]</span>
+        <span class="pub-venue">ICLR 2025</span>
+      </div>
+      <div class="pub-title">ToolDial: Multi-turn Dialogue Generation Method for Tool-Augmented Language Models</div>
+      <div class="pub-authors"><strong>Jeonghoon Shim</strong>, Gyuhyeon Seo, Cheongsu Lim, and Yohan Jo</div>
+      <ul class="pub-points">
+        <li>Proposal of a syntactic dialogue data generation method for tool agents utilizing an API graph and agenda-based approach</li>
+        <li>Automatic generation of multi-turn dialogues covering diverse scenarios in terms of quality and quantity</li>
+        <li>Experimental results reveal that state-of-the-art tool agents struggle in perceiving exact input parameter states and optimal action selection throughout multi-turn dialogue</li>
+      </ul>
+    </div>
+
+    <div class="pub">
+      <div class="pub-meta">
+        <span class="pub-num">[3]</span>
+        <span class="pub-venue">KST 2022</span>
+      </div>
+      <div class="pub-title">Analysis of Seoul Public Bike Demand during Night Times by Applying Heckman Selection Models</div>
+      <div class="pub-authors"><strong>Jeonghoon Shim</strong> and Junho Ko</div>
+      <ul class="pub-points">
+        <li>Analysis of shared bicycle usage pattern differences between late-night and daytime hours in Seoul</li>
+        <li>Application of Heckman Selection models on public bike usage data with geospatial features</li>
+        <li>Discovery that the current placement of shared bicycle stations may be misaligned with the needs of late-night users</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>Education</h2>
+
+    <div class="item">
+      <div class="item-period">03/2025 – Present</div>
+      <div>
+        <div class="item-title">Ph.D. in Data Science</div>
+        <div class="item-sub">Seoul National University · Advisor: Yohan Jo</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-period">03/2023 – 02/2025</div>
+      <div>
+        <div class="item-title">M.S. in Data Science</div>
+        <div class="item-sub">Seoul National University · Advisor: Yohan Jo</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-period">03/2017 – 02/2023</div>
+      <div>
+        <div class="item-title">B.S. in Urban Planning and Engineering</div>
+        <div class="item-sub">Hanyang University · Advisor: Junho Ko</div>
+        <div class="item-sub" style="color:#555;">2-year absence due to Korean military service</div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>Industry Collaboration</h2>
+
+    <div class="item">
+      <div class="item-period">12/2025 – Present</div>
+      <div>
+        <div class="item-title">Yield Analysis LLM Agents for Semiconductor Manufacturing</div>
+        <div class="item-sub">Samsung Electronics, AI Center</div>
+        <ul class="pub-points">
+          <li>Development of a diagnostic framework for yield analysis LLM agents deployed in semiconductor manufacturing service</li>
+          <li>Automatic extraction of non-collaborative behavior categories from natural language queries collected from internal engineers</li>
+          <li>Simulation of extracted behaviors and diagnosis of agent weaknesses under such conditions</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>Teaching Assistant</h2>
+    <div class="ta-item"><span>Large Language Models and Conversational AI</span> · Graduate TA · SNU · Spring 2025</div>
+    <div class="ta-item"><span>Computing for Data Science 1</span> · Graduate TA · SNU · Spring 2024</div>
+  </section>
+
+</div>
+</body>
+</html>
