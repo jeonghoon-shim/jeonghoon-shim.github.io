@@ -4,310 +4,445 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jeonghoon Shim</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: #111;
-      color: #d4d4d4;
+      background: #f8fafc;
+      color: #374151;
       font-family: 'Inter', sans-serif;
       font-size: 15px;
       line-height: 1.7;
-      padding: 60px 24px;
     }
 
-    .wrap {
-      max-width: 680px;
+    a { color: #2563eb; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 900px;
       margin: 0 auto;
+      padding: 56px 28px 80px;
     }
 
-    header { margin-bottom: 48px; }
+    /* ─── HEADER ─────────────────────────────── */
+    .header {
+      display: flex;
+      gap: 44px;
+      align-items: flex-start;
+      margin-bottom: 60px;
+    }
 
-    header h1 {
-      font-size: 28px;
-      font-weight: 600;
-      color: #f0f0f0;
+    .profile-wrap { flex-shrink: 0; }
+
+    /* Gray circle shown when images/profile.jpg is missing */
+    .profile-wrap::before {
+      content: '';
+      display: block;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      position: absolute;
+    }
+
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      position: relative;
+    }
+
+    /* Hide broken-image icon; the ::before gray circle shows through */
+    .profile-photo.broken { visibility: hidden; }
+
+    .header-info { flex: 1; padding-top: 8px; }
+
+    .header-info h1 {
+      font-size: 34px;
+      font-weight: 700;
+      color: #111827;
+      letter-spacing: -0.5px;
       margin-bottom: 6px;
     }
 
-    header p {
-      color: #888;
-      font-size: 14px;
-      margin-bottom: 16px;
+    .affiliation {
+      font-size: 14.5px;
+      color: #6b7280;
+      margin-bottom: 18px;
+      line-height: 1.5;
     }
 
-    .links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      font-size: 13px;
+    .bio {
+      font-size: 14.5px;
+      color: #4b5563;
+      line-height: 1.8;
+      margin-bottom: 22px;
     }
+
+    .bio strong { color: #1d4ed8; font-weight: 600; }
+
+    .links { display: flex; flex-wrap: wrap; gap: 8px; }
 
     .links a {
-      color: #7aa2f7;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.15s;
       text-decoration: none;
     }
-    .links a:hover { text-decoration: underline; }
 
-    hr {
-      border: none;
-      border-top: 1px solid #222;
-      margin: 36px 0;
+    .links a.btn-primary { background: #2563eb; color: #fff; }
+    .links a.btn-primary:hover { background: #1d4ed8; }
+
+    .links a.btn-secondary {
+      background: #fff;
+      color: #374151;
+      border: 1.5px solid #d1d5db;
     }
+    .links a.btn-secondary:hover { border-color: #9ca3af; background: #f9fafb; }
 
-    section { margin-bottom: 8px; }
+    /* ─── SECTION ─────────────────────────────── */
+    section { margin-bottom: 52px; }
 
-    h2 {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #555;
+      color: #9ca3af;
       margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e5e7eb;
     }
 
-    .about-text {
-      color: #888;
-      font-size: 14px;
-    }
-
-    /* PUBLICATIONS */
-    .pub { margin-bottom: 28px; }
-
-    .pub-meta {
+    /* ─── PUBLICATIONS ────────────────────────── */
+    .pub {
       display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 4px;
+      gap: 20px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      margin-bottom: 16px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .pub:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border-color: #d1d5db;
     }
 
-    .pub-venue {
-      font-size: 12px;
-      color: #7aa2f7;
+    .pub-thumb-wrap {
+      flex-shrink: 0;
+      width: 150px;
+      height: 108px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      overflow: hidden;
+      position: relative;
     }
 
-    .pub-num {
-      font-size: 12px;
-      color: #444;
+    .pub-thumb {
+      width: 150px;
+      height: 108px;
+      border-radius: 6px;
+      object-fit: cover;
+      display: block;
+      position: relative;
+    }
+
+    /* When image fails: hide broken icon, gradient bg shows through */
+    .pub-thumb.broken { visibility: hidden; }
+
+    .pub-body { flex: 1; min-width: 0; }
+
+    .pub-badge {
+      display: inline-block;
+      padding: 2px 9px;
+      background: #eff6ff;
+      color: #2563eb;
+      border-radius: 4px;
+      font-size: 11.5px;
+      font-weight: 600;
+      margin-bottom: 7px;
+      letter-spacing: 0.02em;
     }
 
     .pub-title {
       font-size: 15px;
-      font-weight: 500;
-      color: #e8e8e8;
-      margin-bottom: 4px;
+      font-weight: 600;
+      color: #111827;
+      line-height: 1.45;
+      margin-bottom: 5px;
     }
 
     .pub-authors {
       font-size: 13px;
-      color: #666;
+      color: #9ca3af;
       margin-bottom: 10px;
     }
+    .pub-authors strong { color: #2563eb; font-weight: 600; }
 
-    .pub-authors strong { color: #aaa; }
-
-    ul.pub-points {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
+    ul.pub-points { list-style: none; padding: 0; }
     ul.pub-points li {
       font-size: 13px;
-      color: #777;
-      padding-left: 16px;
+      color: #6b7280;
+      padding-left: 14px;
       position: relative;
       line-height: 1.65;
+      margin-bottom: 2px;
     }
-
     ul.pub-points li::before {
-      content: '·';
+      content: '▸';
       position: absolute;
-      left: 4px;
-      color: #444;
+      left: 0;
+      color: #93c5fd;
+      font-size: 9px;
+      top: 4px;
     }
 
-    /* EDUCATION / ITEMS */
-    .item {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 16px;
-      margin-bottom: 20px;
+    /* ─── EDUCATION / INDUSTRY ─────────────────── */
+    .card {
+      padding: 18px 20px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      margin-bottom: 12px;
     }
 
-    .item-period {
-      font-size: 13px;
-      color: #555;
-      padding-top: 1px;
-    }
-
-    .item-title {
-      font-weight: 500;
-      color: #e0e0e0;
+    .card-period {
+      font-size: 12px;
+      color: #9ca3af;
       margin-bottom: 2px;
     }
 
-    .item-sub {
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 6px;
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 2px;
+      line-height: 1.4;
     }
 
-    /* TEACHING */
+    .card-sub {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 2px;
+    }
+
+    .card-note {
+      font-size: 12px;
+      color: #d1d5db;
+      margin-top: 4px;
+    }
+
+    /* ─── TEACHING ────────────────────────────── */
+    .ta-list { display: flex; flex-direction: column; gap: 10px; }
+
     .ta-item {
-      font-size: 13px;
-      color: #777;
-      margin-bottom: 8px;
-      padding-left: 16px;
-      position: relative;
+      padding: 14px 18px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      border-left: 3px solid #10b981;
     }
 
-    .ta-item::before {
-      content: '·';
-      position: absolute;
-      left: 4px;
-      color: #444;
+    .ta-course {
+      font-size: 14px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 2px;
     }
 
-    .ta-item span {
-      color: #aaa;
-    }
+    .ta-meta { font-size: 13px; color: #9ca3af; }
 
-    @media (max-width: 480px) {
-      .item { grid-template-columns: 1fr; gap: 2px; }
+    /* ─── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 640px) {
+      .header { flex-direction: column; align-items: center; text-align: center; }
+      .links { justify-content: center; }
+      .pub { flex-direction: column; }
+      .pub-thumb-wrap { width: 100%; height: 160px; }
+      .pub-thumb { width: 100%; height: 160px; }
     }
   </style>
 </head>
 <body>
-<div class="wrap">
+<div class="container">
 
-  <header>
-    <h1>Jeonghoon Shim</h1>
-    <p>Graduate School of Data Science · Seoul National University</p>
-    <div class="links">
-      <a href="mailto:jhshim98@snu.ac.kr">jhshim98@snu.ac.kr</a>
-      <a href="https://github.com/GSDS-HNLP-SHIM" target="_blank">GitHub</a>
-      <a href="https://scholar.google.com/citations?user=vxqEpdwAAAAJ&hl=ko" target="_blank">Google Scholar</a>
-      <a href="CV_JeonghoonShim.pdf" target="_blank">CV (PDF)</a>
+  <!-- ═══ HEADER ════════════════════════════════════════ -->
+  <div class="header">
+    <div class="profile-wrap">
+      <!-- 프로필 사진: images/profile.jpg 를 넣어주세요 -->
+      <img
+        src="images/profile.jpg"
+        alt="Jeonghoon Shim"
+        class="profile-photo"
+        onerror="this.classList.add('broken')"
+      />
     </div>
-  </header>
 
-  <hr>
+    <div class="header-info">
+      <h1>Jeonghoon Shim</h1>
+      <div class="affiliation">
+        Ph.D. Student · Graduate School of Data Science<br>
+        Seoul National University
+      </div>
+      <p class="bio">
+        I am interested in defining and solving problems in the
+        <strong>training and evaluation of AI Agents</strong> toward real-world deployment.
+        Previously, I've conducted research on dialogue interaction between AI Agents and human users.
+        I am also interested in <strong>RL training of AI Agents</strong> and
+        <strong>visually-grounded Agents</strong> (e.g., GUI, Mobile agents).
+      </p>
+      <div class="links">
+        <a class="btn-primary" href="mailto:jhshim98@snu.ac.kr">✉ Email</a>
+        <a class="btn-secondary" href="https://github.com/GSDS-HNLP-SHIM" target="_blank">GitHub</a>
+        <a class="btn-secondary" href="https://scholar.google.com/citations?user=vxqEpdwAAAAJ&hl=ko" target="_blank">Google Scholar</a>
+        <a class="btn-secondary" href="CV_JeonghoonShim.pdf" target="_blank">CV (PDF)</a>
+      </div>
+    </div>
+  </div>
 
+  <!-- ═══ PUBLICATIONS ══════════════════════════════════ -->
   <section>
-    <h2>About</h2>
-    <p class="about-text">
-      I am interested in defining and solving problems in the training and evaluation of AI Agents toward real-world deployment. Previously, I've conducted research on dialogue interaction between AI Agents and human users, and I still have great enthusiasm for it. Beyond this, I am interested in RL training of AI Agents and visually-grounded Agents (e.g., GUI, Mobile agents).
-    </p>
-  </section>
-
-  <hr>
-
-  <section>
-    <h2>Publications</h2>
+    <div class="section-title">Publications</div>
 
     <div class="pub">
-      <div class="pub-meta">
-        <span class="pub-num">[1]</span>
-        <span class="pub-venue">ICLR 2026</span>
+      <div class="pub-thumb-wrap">
+        <!-- 논문 썸네일: images/paper1.jpg 를 넣어주세요 -->
+        <img
+          src="images/paper1.jpg"
+          alt="Non-Collaborative User Simulators"
+          class="pub-thumb"
+          onerror="this.classList.add('broken')"
+        />
       </div>
-      <div class="pub-title">Non-Collaborative User Simulators for Tool Agents</div>
-      <div class="pub-authors"><strong>Jeonghoon Shim</strong>, Woojung Song, Cheyon Jin, Seungwon Koo, and Yohan Jo</div>
-      <ul class="pub-points">
-        <li>Identification of non-collaborative user behaviors observed in real-world customer service</li>
-        <li>Proposal of simulation methods that replicate non-collaborative users</li>
-        <li>Experimental results demonstrate that state-of-the-art and fine-tuned agents can be impaired when faced with non-collaborative users</li>
-      </ul>
-    </div>
-
-    <div class="pub">
-      <div class="pub-meta">
-        <span class="pub-num">[2]</span>
-        <span class="pub-venue">ICLR 2025</span>
-      </div>
-      <div class="pub-title">ToolDial: Multi-turn Dialogue Generation Method for Tool-Augmented Language Models</div>
-      <div class="pub-authors"><strong>Jeonghoon Shim</strong>, Gyuhyeon Seo, Cheongsu Lim, and Yohan Jo</div>
-      <ul class="pub-points">
-        <li>Proposal of a syntactic dialogue data generation method for tool agents utilizing an API graph and agenda-based approach</li>
-        <li>Automatic generation of multi-turn dialogues covering diverse scenarios in terms of quality and quantity</li>
-        <li>Experimental results reveal that state-of-the-art tool agents struggle in perceiving exact input parameter states and optimal action selection throughout multi-turn dialogue</li>
-      </ul>
-    </div>
-
-    <div class="pub">
-      <div class="pub-meta">
-        <span class="pub-num">[3]</span>
-        <span class="pub-venue">KST 2022</span>
-      </div>
-      <div class="pub-title">Analysis of Seoul Public Bike Demand during Night Times by Applying Heckman Selection Models</div>
-      <div class="pub-authors"><strong>Jeonghoon Shim</strong> and Junho Ko</div>
-      <ul class="pub-points">
-        <li>Analysis of shared bicycle usage pattern differences between late-night and daytime hours in Seoul</li>
-        <li>Application of Heckman Selection models on public bike usage data with geospatial features</li>
-        <li>Discovery that the current placement of shared bicycle stations may be misaligned with the needs of late-night users</li>
-      </ul>
-    </div>
-  </section>
-
-  <hr>
-
-  <section>
-    <h2>Education</h2>
-
-    <div class="item">
-      <div class="item-period">03/2025 – Present</div>
-      <div>
-        <div class="item-title">Ph.D. in Data Science</div>
-        <div class="item-sub">Seoul National University · Advisor: Yohan Jo</div>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-period">03/2023 – 02/2025</div>
-      <div>
-        <div class="item-title">M.S. in Data Science</div>
-        <div class="item-sub">Seoul National University · Advisor: Yohan Jo</div>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-period">03/2017 – 02/2023</div>
-      <div>
-        <div class="item-title">B.S. in Urban Planning and Engineering</div>
-        <div class="item-sub">Hanyang University · Advisor: Junho Ko</div>
-        <div class="item-sub" style="color:#555;">2-year absence due to Korean military service</div>
-      </div>
-    </div>
-  </section>
-
-  <hr>
-
-  <section>
-    <h2>Industry Collaboration</h2>
-
-    <div class="item">
-      <div class="item-period">12/2025 – Present</div>
-      <div>
-        <div class="item-title">Yield Analysis LLM Agents for Semiconductor Manufacturing</div>
-        <div class="item-sub">Samsung Electronics, AI Center</div>
+      <div class="pub-body">
+        <span class="pub-badge">ICLR 2026</span>
+        <div class="pub-title">Non-Collaborative User Simulators for Tool Agents</div>
+        <div class="pub-authors">
+          <strong>Jeonghoon Shim</strong>, Woojung Song, Cheyon Jin, Seungwon Koo, and Yohan Jo
+        </div>
         <ul class="pub-points">
-          <li>Development of a diagnostic framework for yield analysis LLM agents deployed in semiconductor manufacturing service</li>
-          <li>Automatic extraction of non-collaborative behavior categories from natural language queries collected from internal engineers</li>
-          <li>Simulation of extracted behaviors and diagnosis of agent weaknesses under such conditions</li>
+          <li>Identification of non-collaborative user behaviors observed in real-world customer service</li>
+          <li>Proposal of simulation methods that replicate non-collaborative users</li>
+          <li>State-of-the-art and fine-tuned agents are significantly impaired by non-collaborative users</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-thumb-wrap">
+        <!-- 논문 썸네일: images/paper2.jpg 를 넣어주세요 -->
+        <img
+          src="images/paper2.jpg"
+          alt="ToolDial"
+          class="pub-thumb"
+          onerror="this.classList.add('broken')"
+        />
+      </div>
+      <div class="pub-body">
+        <span class="pub-badge">ICLR 2025</span>
+        <div class="pub-title">ToolDial: Multi-turn Dialogue Generation Method for Tool-Augmented Language Models</div>
+        <div class="pub-authors">
+          <strong>Jeonghoon Shim</strong>, Gyuhyeon Seo, Cheongsu Lim, and Yohan Jo
+        </div>
+        <ul class="pub-points">
+          <li>Syntactic dialogue data generation method using an API graph and agenda-based approach</li>
+          <li>Automatic generation of multi-turn dialogues covering diverse scenarios in quality and quantity</li>
+          <li>State-of-the-art tool agents struggle to perceive exact input parameter states in multi-turn dialogue</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-thumb-wrap">
+        <!-- 논문 썸네일: images/paper3.jpg 를 넣어주세요 -->
+        <img
+          src="images/paper3.jpg"
+          alt="Seoul Bike Demand"
+          class="pub-thumb"
+          onerror="this.classList.add('broken')"
+        />
+      </div>
+      <div class="pub-body">
+        <span class="pub-badge">KST 2022</span>
+        <div class="pub-title">Analysis of Seoul Public Bike Demand during Night Times by Applying Heckman Selection Models</div>
+        <div class="pub-authors">
+          <strong>Jeonghoon Shim</strong> and Junho Ko
+        </div>
+        <ul class="pub-points">
+          <li>Analysis of shared bicycle usage pattern differences between late-night and daytime hours in Seoul</li>
+          <li>Application of Heckman Selection models on public bike data with geospatial features</li>
+          <li>Current station placement may be misaligned with the needs of late-night users</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <hr>
-
+  <!-- ═══ EDUCATION ═════════════════════════════════════ -->
   <section>
-    <h2>Teaching Assistant</h2>
-    <div class="ta-item"><span>Large Language Models and Conversational AI</span> · Graduate TA · SNU · Spring 2025</div>
-    <div class="ta-item"><span>Computing for Data Science 1</span> · Graduate TA · SNU · Spring 2024</div>
+    <div class="section-title">Education</div>
+
+    <div class="card">
+      <div class="card-period">03/2025 – Present</div>
+      <div class="card-title">Ph.D. in Data Science</div>
+      <div class="card-sub">Seoul National University · Advisor: Yohan Jo</div>
+    </div>
+
+    <div class="card">
+      <div class="card-period">03/2023 – 02/2025</div>
+      <div class="card-title">M.S. in Data Science</div>
+      <div class="card-sub">Seoul National University · Advisor: Yohan Jo</div>
+    </div>
+
+    <div class="card">
+      <div class="card-period">03/2017 – 02/2023</div>
+      <div class="card-title">B.S. in Urban Planning and Engineering</div>
+      <div class="card-sub">Hanyang University · Advisor: Junho Ko</div>
+      <div class="card-note">incl. 2-year absence for military service</div>
+    </div>
+  </section>
+
+  <!-- ═══ INDUSTRY COLLABORATION ═══════════════════════ -->
+  <section>
+    <div class="section-title">Industry Collaboration</div>
+
+    <div class="card">
+      <div class="card-period">12/2025 – Present</div>
+      <div class="card-title">Yield Analysis LLM Agents for Semiconductor Manufacturing</div>
+      <div class="card-sub" style="margin-bottom: 10px;">Samsung Electronics, AI Center</div>
+      <ul class="pub-points">
+        <li>Development of a diagnostic framework for yield analysis LLM agents in semiconductor manufacturing</li>
+        <li>Automatic extraction of non-collaborative behavior categories from internal engineer queries</li>
+        <li>Simulation of extracted behaviors and diagnosis of agent weaknesses under such conditions</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ TEACHING ══════════════════════════════════════ -->
+  <section>
+    <div class="section-title">Teaching</div>
+    <div class="ta-list">
+      <div class="ta-item">
+        <div class="ta-course">Large Language Models and Conversational AI</div>
+        <div class="ta-meta">Graduate TA · Seoul National University · Spring 2025</div>
+      </div>
+      <div class="ta-item">
+        <div class="ta-course">Computing for Data Science 1</div>
+        <div class="ta-meta">Graduate TA · Seoul National University · Spring 2024</div>
+      </div>
+    </div>
   </section>
 
 </div>
